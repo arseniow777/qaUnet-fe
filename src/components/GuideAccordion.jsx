@@ -1,0 +1,57 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+const QNA = [
+  {
+    q: "Apa itu QA-UNet?",
+    a: "QA-UNet adalah model segmentasi gambar hybrid yang menggabungkan Variational Quantum Circuit (VQC) sebagai bottleneck dengan Attention Gate pada arsitektur U-Net klasik untuk deteksi area banjir dari foto UAV.",
+  },
+  {
+    q: "Gambar seperti apa yang bisa diupload?",
+    a: "Foto udara (UAV/drone) area banjir dalam format JPG atau PNG. Gambar akan di-resize otomatis ke 256x256 piksel sebelum diproses.",
+  },
+  {
+    q: "Apa perbedaan 3 model yang tersedia?",
+    a: "U-Net Baseline adalah arsitektur dasar. Attention U-Net menambahkan attention gate untuk fokus ke area relevan. Quantum U-Net menggantikan bottleneck klasik dengan Variational Quantum Circuit 8 qubit.",
+  },
+  {
+    q: "Apa arti flood percentage?",
+    a: "Persentase piksel dalam gambar yang terdeteksi sebagai area banjir dari total 65.536 piksel (256x256).",
+  },
+  {
+    q: "Bagaimana cara menggunakan slider hasil?",
+    a: "Geser handle di tengah gambar hasil untuk membandingkan mask biru-putih (kiri) dengan overlay merah area banjir (kanan).",
+  },
+  {
+    q: "Berapa lama waktu prediksi?",
+    a: "U-Net Baseline dan Attention U-Net biasanya selesai dalam 1-3 detik. Quantum U-Net membutuhkan lebih lama karena simulasi quantum circuit.",
+  },
+];
+
+export default function GuideAccordion() {
+  return (
+    <div className="space-y-3">
+      <h2 className="text-lg font-semibold text-white">Panduan Penggunaan</h2>
+      <Accordion type="single" collapsible className="space-y-1">
+        {QNA.map((item, i) => (
+          <AccordionItem
+            key={i}
+            value={`item-${i}`}
+            className="border border-white/10 rounded-lg px-4 bg-white/5"
+          >
+            <AccordionTrigger className="text-sm text-white/80 hover:text-white py-3 hover:no-underline">
+              {item.q}
+            </AccordionTrigger>
+            <AccordionContent className="text-xs text-white/50 pb-3 leading-relaxed">
+              {item.a}
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </div>
+  );
+}
