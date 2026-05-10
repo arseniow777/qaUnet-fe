@@ -18,10 +18,39 @@ import {
 import { useRef, useState } from "react";
 
 export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
+  const isTouchDevice = () =>
+    typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
+
   return (
     <>
-      <FloatingDockDesktop items={items} className={desktopClassName} />
+      {isTouchDevice() ? (
+        <FloatingDockStatic items={items} className={desktopClassName} />
+      ) : (
+        <FloatingDockDesktop items={items} className={desktopClassName} />
+      )}
     </>
+  );
+};
+
+const FloatingDockStatic = ({ items, className }) => {
+  return (
+    <div
+      className={cn(
+        "mx-auto flex h-16 items-end gap-4 rounded-2xl px-4 pb-3",
+        className,
+      )}
+    >
+      {items.map((item) => (
+        <div
+          key={item.title}
+          className="relative flex aspect-square w-10 h-10 items-center justify-center rounded-xs bg-yellow-500 border border-neutral-900"
+        >
+          <div className="w-5 h-5 flex items-center justify-center">
+            {item.icon}
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };
 
@@ -101,14 +130,14 @@ function IconContainer({ mouseX, title, icon, href }) {
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  let heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+  let widthTransform = useTransform(distance, [-150, 0, 150], [40, 56, 40]);
+  let heightTransform = useTransform(distance, [-150, 0, 150], [40, 56, 40]);
 
-  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 28, 20]);
   let heightTransformIcon = useTransform(
     distance,
     [-150, 0, 150],
-    [20, 40, 20],
+    [20, 28, 20],
   );
 
   let width = useSpring(widthTransform, {

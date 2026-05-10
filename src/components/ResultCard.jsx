@@ -44,13 +44,14 @@ export default function ResultSection({ results, elapsed }) {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* kiri: slider + navigator */}
       <div className="p-x-4 pb-4 space-y-4 border-none">
-        <div className="flex items-center justify-between px-50">
+        <div className="flex items-center justify-center px-20 md:px-50">
           <Button
             size="sm"
             variant="ghost"
             className="text-neutral-900 hover:text-neutral-900"
-            onClick={() => setActiveIdx((i) => Math.max(i - 1, 0))}
-            disabled={activeIdx === 0}
+            onClick={() =>
+              setActiveIdx((i) => (i - 1 + modelKeys.length) % modelKeys.length)
+            }
           >
             <ChevronLeft />
           </Button>
@@ -61,10 +62,7 @@ export default function ResultSection({ results, elapsed }) {
             size="sm"
             variant="ghost"
             className="text-neutral-900"
-            onClick={() =>
-              setActiveIdx((i) => Math.min(i + 1, modelKeys.length - 1))
-            }
-            disabled={activeIdx === modelKeys.length - 1}
+            onClick={() => setActiveIdx((i) => (i + 1) % modelKeys.length)}
           >
             <ChevronRight />
           </Button>
@@ -80,7 +78,7 @@ export default function ResultSection({ results, elapsed }) {
       {/* kanan: metrics */}
 
       <div className="p-x-4 pb-4 space-y-5 border-none">
-        <div className="flex items-center justify-center px-50 font-semibold">
+        <div className="flex items-center justify-center px-20 md:px-50 font-semibold">
           Keterangan
         </div>
         <MetricCard
