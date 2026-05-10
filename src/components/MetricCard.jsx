@@ -1,20 +1,21 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { IconClockHour2 as Clock } from "@tabler/icons-react";
 
 export default function MetricCard({ metrics, isBest, elapsed }) {
   const floodPct = metrics.flood_percentage;
 
   return (
-    <Card className="bg-white border-neutral-200 p-5 space-y-4 text-neutral-900 shadow-sm">
+    <Card className="bg-white p-5 space-y-4 text-neutral-900 rounded-xs">
       {isBest && (
-        <Badge className="bg-yellow-500 hover:bg-yellow-500 text-black text-xs font-semibold">
-          ★ Best Model
+        <Badge className="text-neutral-900 text-sm font-semibold pl-0">
+          Best Model
         </Badge>
       )}
 
       {/* flood area */}
       <div className="space-y-2">
-        <div className="flex justify-between text-xs text-neutral-500">
+        <div className="flex justify-between text-xs text-neutral-700">
           <span>Flood Area</span>
           <span className="text-neutral-900 font-semibold">{floodPct}%</span>
         </div>
@@ -24,7 +25,7 @@ export default function MetricCard({ metrics, isBest, elapsed }) {
             style={{ width: `${floodPct}%` }}
           />
         </div>
-        <div className="flex justify-between text-[10px] text-neutral-300">
+        <div className="flex justify-between text-xs text-neutral-700">
           <span>0%</span>
           <span>100%</span>
         </div>
@@ -32,13 +33,13 @@ export default function MetricCard({ metrics, isBest, elapsed }) {
 
       {/* pixel stats */}
       <div className="grid grid-cols-2 gap-2 text-xs">
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 space-y-0.5">
-          <p className="text-yellow-600">Flood Pixels</p>
-          <p className="text-neutral-900 font-semibold text-sm">
+        <div className="bg-yellow-500 border border-neutral-900 rounded-xs p-3 space-y-0.5">
+          <p className="text-neutral-900 text-md">Flood Pixels</p>
+          <p className="text-neutral-900 text-xs font-semibold">
             {metrics.flood_pixels.toLocaleString()}
           </p>
         </div>
-        <div className="bg-neutral-50 border border-neutral-200 rounded-lg p-3 space-y-0.5">
+        <div className="bg-neutral-50 border border-neutral-200 rounded-xs p-3 space-y-0.5">
           <p className="text-neutral-400">Non-Flood</p>
           <p className="text-neutral-900 font-semibold text-sm">
             {metrics.non_flood_pixels.toLocaleString()}
@@ -47,8 +48,8 @@ export default function MetricCard({ metrics, isBest, elapsed }) {
       </div>
 
       {elapsed && (
-        <p className="text-[10px] text-neutral-300 text-right">
-          ⏱ {elapsed}s execution time
+        <p className="text-sm text-neutral-900 text-right flex items-center justify-end gap-1">
+          <Clock className="w-4 h-4" /> {elapsed}s execution time
         </p>
       )}
     </Card>

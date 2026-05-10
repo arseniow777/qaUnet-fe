@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function ModelDock({ onSelect, loading }) {
   const iconClass =
-    "w-full h-full flex items-center justify-center text-yellow-600";
+    "w-full h-full flex items-center justify-center text-neutral-900";
 
   const items = [
     {
@@ -72,10 +72,7 @@ export default function ModelDock({ onSelect, loading }) {
       <p className="text-xs text-neutral-400 tracking-widest uppercase">
         Choose Model
       </p>
-      <FloatingDock
-        items={items}
-        desktopClassName="bg-white border border-neutral-200 shadow-sm"
-      />
+      <FloatingDock items={items} desktopClassName="rounded-xs" />
       {showLoader && (
         <div className="flex items-center gap-2">
           <div className="flex gap-1">

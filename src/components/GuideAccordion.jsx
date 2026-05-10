@@ -35,20 +35,16 @@ const QNA = [
 export default function GuideAccordion() {
   return (
     <div className="space-y-3">
-      <div className="space-y-1">
-        <h3 className="text-sm font-semibold text-neutral-700">
-          Panduan Penggunaan
-        </h3>
-        <p className="text-xs text-neutral-400">
-          Pertanyaan umum seputar penggunaan
-        </p>
+      <div className="space-y-1 mb-6">
+        <h3 className="font-semibold text-neutral-700">Panduan Penggunaan</h3>
+        <p className="text-neutral-400">Pertanyaan umum seputar penggunaan</p>
       </div>
       <Accordion type="single" collapsible className="space-y-1">
         {QNA.map((item, i) => (
           <AccordionItem
             key={i}
             value={`item-${i}`}
-            className="border border-neutral-200 rounded-lg px-4 bg-white"
+            className="border border-neutral-900 rounded-xs px-4"
           >
             <AccordionTrigger className="text-sm text-neutral-700 hover:text-neutral-900 py-3 hover:no-underline">
               {item.q}

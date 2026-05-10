@@ -72,15 +72,15 @@ export default function Home() {
 
       {/* Eksperimen */}
       <section ref={eksperimenRef}>
-        <div className="max-w-7xl mx-auto px-6 py-16 space-y-6">
+        <div className="max-w-7xl mx-auto px-6 pb-16 space-y-6">
           <SectionLabel>Eksperimen</SectionLabel>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div className="space-y-6">
               <div className="space-y-1">
-                <h3 className="text-sm font-semibold text-neutral-700">
+                <h3 className="font-semibold text-neutral-700">
                   Unggah Gambar
                 </h3>
-                <p className="text-xs text-neutral-400">
+                <p className="text-neutral-400">
                   Format JPG / PNG dari foto UAV area banjir
                 </p>
               </div>

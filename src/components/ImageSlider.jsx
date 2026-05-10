@@ -18,7 +18,7 @@ export default function ImageSlider({ mask, overlay }) {
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-square rounded-xl overflow-hidden select-none cursor-col-resize"
+      className="relative w-full aspect-square rounded-xs overflow-hidden select-none cursor-col-resize"
       onMouseDown={() => (dragging.current = true)}
       onMouseUp={() => (dragging.current = false)}
       onMouseLeave={() => (dragging.current = false)}

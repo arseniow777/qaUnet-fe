@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import ImageSlider from "./ImageSlider";
 import MetricCard from "./MetricCard";
+import { ChevronLeft, ChevronRight, Download } from "lucide-react";
 
 const MODEL_LABELS = {
   unet: "U-Net Baseline",
@@ -35,51 +36,42 @@ export default function ResultSection({ results, elapsed }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* kiri: slider + navigator */}
-      <Card className="bg-white border-neutral-200 p-4 space-y-4 shadow-sm">
-        <div className="flex items-center justify-between">
+      <div className="p-x-4 pb-4 space-y-4 border-none">
+        <div className="flex items-center justify-between px-50">
           <Button
             size="sm"
             variant="ghost"
-            className="text-neutral-400 hover:text-neutral-900"
+            className="text-neutral-900 hover:text-neutral-900"
             onClick={() => setActiveIdx((i) => Math.max(i - 1, 0))}
             disabled={activeIdx === 0}
           >
-            ‹
+            <ChevronLeft />
           </Button>
-          <span className="text-sm font-semibold text-neutral-900">
+          <span className="text-md font-semibold text-neutral-800">
             {MODEL_LABELS[activeKey]}
           </span>
           <Button
             size="sm"
             variant="ghost"
-            className="text-neutral-400 hover:text-neutral-900"
+            className="text-neutral-900"
             onClick={() =>
               setActiveIdx((i) => Math.min(i + 1, modelKeys.length - 1))
             }
             disabled={activeIdx === modelKeys.length - 1}
           >
-            ›
+            <ChevronRight />
           </Button>
         </div>
 
         <ImageSlider mask={activeResult.mask} overlay={activeResult.overlay} />
-
-        <p className="text-xs text-neutral-400 text-center">
-          Geser untuk bandingkan Mask ↔ Overlay
-        </p>
-
-        <Button
-          size="sm"
-          variant="outline"
-          className="w-full border-neutral-200 text-neutral-700 hover:bg-neutral-50 text-xs"
-          onClick={handleDownload}
-        >
-          ↓ Download Overlay
-        </Button>
-      </Card>
+      </div>
 
       {/* kanan: metrics */}
-      <div className="space-y-3">
+
+      <div className="p-x-4 pb-4 space-y-5 border-none">
+        <div className="flex items-center justify-center px-50 font-semibold">
+          Keterangan
+        </div>
         <MetricCard
           metrics={activeResult.metrics}
           isBest={activeKey === bestModel}
@@ -87,8 +79,8 @@ export default function ResultSection({ results, elapsed }) {
         />
 
         {modelKeys.length > 1 && (
-          <Card className="bg-white border-neutral-200 p-4 space-y-2 shadow-sm">
-            <p className="text-xs text-neutral-400 uppercase tracking-wider">
+          <Card className="bg-white p-4 space-y-2 rounded-xs">
+            <p className="text-sm text-neutral-900 font-semibold">
               Semua Model
             </p>
             {modelKeys.map((k) => (
@@ -97,8 +89,8 @@ export default function ResultSection({ results, elapsed }) {
                 onClick={() => setActiveIdx(modelKeys.indexOf(k))}
                 className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${
                   k === activeKey
-                    ? "bg-yellow-50 border border-yellow-300 text-neutral-900 font-medium"
-                    : "bg-neutral-50 border border-neutral-200 text-neutral-500 hover:text-neutral-900"
+                    ? "bg-yellow-500 border border-netural-900 text-neutral-900 font-bold rounded-xs"
+                    : "bg-neutral-50 border border-neutral-200 text-neutral-500 hover:text-neutral-900 rounded-xs"
                 }`}
               >
                 <span>{MODEL_LABELS[k]}</span>
@@ -107,6 +99,17 @@ export default function ResultSection({ results, elapsed }) {
             ))}
           </Card>
         )}
+
+        <div className="flex justify-center">
+          <Button
+            size="sm"
+            variant="outline"
+            className="w-40 h-10 rounded-xs bg-yellow-500 font-semibold border-neutral-900 text-neutral-700 hover:bg-neutral-50"
+            onClick={handleDownload}
+          >
+            <Download /> Download Overlay
+          </Button>
+        </div>
       </div>
     </div>
   );
