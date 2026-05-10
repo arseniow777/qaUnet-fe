@@ -19,15 +19,15 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
         <span
-          className={`font-bold text-sm tracking-widest uppercase transition-all duration-500 ${
+          className={`font-bold text-md tracking-widest uppercase transition-all duration-500 ${
             scrolled ? "opacity-100 text-neutral-900" : "opacity-0"
           }`}
         >
           QA-UNet
         </span>
         <span
-          className={`text-xs tracking-widest uppercase transition-all duration-500 ${
-            scrolled ? "opacity-100 text-neutral-400" : "opacity-0"
+          className={`text-md tracking-widest uppercase transition-all duration-500 ${
+            scrolled ? "opacity-100 text-neutral-700" : "opacity-0"
           }`}
         >
           Flood Detection

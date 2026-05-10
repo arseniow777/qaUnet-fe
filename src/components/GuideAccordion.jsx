@@ -24,11 +24,11 @@ const QNA = [
   },
   {
     q: "Bagaimana cara menggunakan slider hasil?",
-    a: "Geser handle di tengah gambar hasil untuk membandingkan mask biru-putih (kiri) dengan overlay merah area banjir (kanan).",
+    a: "Geser handle di tengah gambar hasil untuk membandingkan gambar.",
   },
   {
-    q: "Berapa lama waktu prediksi?",
-    a: "U-Net Baseline dan Attention U-Net biasanya selesai dalam 1-3 detik. Quantum U-Net membutuhkan lebih lama karena simulasi quantum circuit.",
+    q: "Bagaimana cara penggunaan?",
+    a: "Upload gambar terlebih dahulu, kemudian klik salah satu dari ketiga model yang diinginkan kemudian hasil dapat dilihat di section hasil",
   },
 ];
 
@@ -49,7 +49,7 @@ export default function GuideAccordion() {
             <AccordionTrigger className="text-sm text-neutral-700 hover:text-neutral-900 py-3 hover:no-underline">
               {item.q}
             </AccordionTrigger>
-            <AccordionContent className="text-xs text-neutral-500 pb-3 leading-relaxed">
+            <AccordionContent className="text-sm text-neutral-500 pb-3 leading-relaxed">
               {item.a}
             </AccordionContent>
           </AccordionItem>

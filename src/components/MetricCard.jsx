@@ -6,7 +6,7 @@ export default function MetricCard({ metrics, isBest, elapsed }) {
   const floodPct = metrics.flood_percentage;
 
   return (
-    <Card className="bg-white p-5 space-y-4 text-neutral-900 rounded-xs">
+    <Card className="p-5 space-y-4 text-neutral-900 rounded-xs">
       {isBest && (
         <Badge className="text-neutral-900 text-sm font-semibold pl-0">
           Best Model
@@ -15,7 +15,7 @@ export default function MetricCard({ metrics, isBest, elapsed }) {
 
       {/* flood area */}
       <div className="space-y-2">
-        <div className="flex justify-between text-xs text-neutral-700">
+        <div className="flex justify-between text-sm text-neutral-700">
           <span>Flood Area</span>
           <span className="text-neutral-900 font-semibold">{floodPct}%</span>
         </div>
@@ -33,9 +33,9 @@ export default function MetricCard({ metrics, isBest, elapsed }) {
 
       {/* pixel stats */}
       <div className="grid grid-cols-2 gap-2 text-xs">
-        <div className="bg-yellow-500 border border-neutral-900 rounded-xs p-3 space-y-0.5">
+        <div className="bg-neutral-50 border border-neutral-200 rounded-xs p-3 space-y-0.5">
           <p className="text-neutral-900 text-md">Flood Pixels</p>
-          <p className="text-neutral-900 text-xs font-semibold">
+          <p className="text-neutral-900 text-sm font-semibold">
             {metrics.flood_pixels.toLocaleString()}
           </p>
         </div>

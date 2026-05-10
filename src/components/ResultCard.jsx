@@ -33,6 +33,13 @@ export default function ResultSection({ results, elapsed }) {
     a.click();
   };
 
+  const handleDownloadMask = () => {
+    const a = document.createElement("a");
+    a.href = `data:image/png;base64,${activeResult.mask}`;
+    a.download = `${activeKey}_mask.png`;
+    a.click();
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* kiri: slider + navigator */}
@@ -63,7 +70,11 @@ export default function ResultSection({ results, elapsed }) {
           </Button>
         </div>
 
-        <ImageSlider mask={activeResult.mask} overlay={activeResult.overlay} />
+        <ImageSlider
+          original={activeResult.original}
+          mask={activeResult.mask}
+          overlay={activeResult.overlay}
+        />
       </div>
 
       {/* kanan: metrics */}
@@ -79,7 +90,7 @@ export default function ResultSection({ results, elapsed }) {
         />
 
         {modelKeys.length > 1 && (
-          <Card className="bg-white p-4 space-y-2 rounded-xs">
+          <Card className="p-4 space-y-2 rounded-xs">
             <p className="text-sm text-neutral-900 font-semibold">
               Semua Model
             </p>
@@ -87,10 +98,10 @@ export default function ResultSection({ results, elapsed }) {
               <button
                 key={k}
                 onClick={() => setActiveIdx(modelKeys.indexOf(k))}
-                className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${
+                className={`w-full flex items-center justify-between px-3 py-4 rounded-lg text-sm transition-all ${
                   k === activeKey
                     ? "bg-yellow-500 border border-netural-900 text-neutral-900 font-bold rounded-xs"
-                    : "bg-neutral-50 border border-neutral-200 text-neutral-500 hover:text-neutral-900 rounded-xs"
+                    : "bg-neutral-50 border border-neutral-200 text-neutral-500 hover:text-neutral-900 hover:text-lg rounded-xs"
                 }`}
               >
                 <span>{MODEL_LABELS[k]}</span>
@@ -100,14 +111,22 @@ export default function ResultSection({ results, elapsed }) {
           </Card>
         )}
 
-        <div className="flex justify-center">
+        <div className="flex justify-center gap-3">
           <Button
             size="sm"
             variant="outline"
-            className="w-40 h-10 rounded-xs bg-yellow-500 font-semibold border-neutral-900 text-neutral-700 hover:bg-neutral-50"
+            className="w-40 h-10 rounded-xs bg-yellow-500 font-bold border-neutral-900 text-neutral-900 hover:bg-neutral-50"
             onClick={handleDownload}
           >
-            <Download /> Download Overlay
+            <Download /> Overlay
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            className="w-40 h-10 rounded-xs bg-yellow-500 font-bold border-neutral-900 text-neutral-900 hover:bg-neutral-50"
+            onClick={handleDownloadMask}
+          >
+            <Download /> Mask
           </Button>
         </div>
       </div>
