@@ -16,7 +16,7 @@ export const BackgroundRippleEffect = ({
       ref={ref}
       className={cn(
         "absolute inset-0 h-full w-full overflow-hidden",
-        "[--cell-border-color:var(--color-neutral-300)] [--cell-fill-color:var(--color-neutral-100)] [--cell-shadow-color:var(--color-neutral-500)]",
+        "[--cell-border-color:var(--color-neutral-500)] [--cell-fill-color:var(--color-neutral-300)] [--cell-shadow-color:var(--color-neutral-500)]",
         "dark:[--cell-border-color:var(--color-neutral-700)] dark:[--cell-fill-color:var(--color-neutral-900)] dark:[--cell-shadow-color:var(--color-neutral-800)]",
       )}
     >
@@ -24,7 +24,7 @@ export const BackgroundRippleEffect = ({
         <div className="pointer-events-none absolute inset-0 z-[2] h-full w-full overflow-hidden" />
         <DivGrid
           key={`base-${rippleKey}`}
-          className="mask-radial-from-30% mask-radial-at-top opacity-100 [mask-image:radial-gradient(ellipse_80%_100%_at_center_top,white_0%,transparent_100%)]"
+          className="mask-radial-from-30% mask-radial-at-top opacity-100 [mask-image:radial-gradient(ellipse_100%_110%_at_center_top,white_0%,transparent_100%)]"
           rows={rows}
           cols={cols}
           cellSize={cellSize}

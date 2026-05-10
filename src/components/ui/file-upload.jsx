@@ -130,7 +130,7 @@ export const FileUpload = ({ onChange }) => {
                   damping: 20,
                 }}
                 className={cn(
-                  "relative z-40 mx-auto mt-4 flex h-32 w-full max-w-[8rem] items-center justify-center rounded-md bg-white group-hover/file:shadow-2xl dark:bg-neutral-900",
+                  "relative z-40 mx-auto mt-4 flex h-32 w-full max-w-[8rem] items-center justify-center rounded-md bg-neutral-900  group-hover/file:shadow-2xl ",
                   "shadow-[0px_10px_50px_rgba(0,0,0,0.1)]",
                 )}
               >
@@ -141,10 +141,10 @@ export const FileUpload = ({ onChange }) => {
                     className="flex flex-col items-center text-neutral-600"
                   >
                     Drop it
-                    <IconUpload className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                    <IconUpload className="h-10 w-10 text-yellow-500 dark:text-neutral-400" />
                   </motion.p>
                 ) : (
-                  <IconUpload className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />
+                  <IconUpload className="h-10 w-10 text-yellow-500 dark:text-neutral-300" />
                 )}
               </motion.div>
             )}
@@ -152,7 +152,7 @@ export const FileUpload = ({ onChange }) => {
             {!files.length && (
               <motion.div
                 variants={secondaryVariant}
-                className="absolute inset-0 z-30 mx-auto mt-4 flex h-32 w-full max-w-[8rem] items-center justify-center rounded-md border border-dashed border-sky-400 bg-transparent opacity-0"
+                className="absolute inset-0 z-30 mx-auto mt-4 flex h-32 w-full max-w-[8rem] items-center justify-center rounded-md border border-dashed border-yellow-500 bg-transparent opacity-0"
               ></motion.div>
             )}
           </div>
