@@ -1,31 +1,25 @@
-export default function DotBackground({ children }) {
+export default function PageBackground({ children }) {
   return (
-    <div
-      className="relative min-h-screen w-full"
-      style={{ backgroundColor: "#080808" }}
-    >
-      {/* dot pattern */}
+    <div className="relative w-full bg-neutral-50 overflow-hidden">
+      {/* siluet yellow kiri atas */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full z-0 pointer-events-none"
         style={{
-          backgroundImage: `radial-gradient(circle, #ffffff12 1px, transparent 1px)`,
-          backgroundSize: "28px 28px",
+          background: "radial-gradient(circle, #eab30820 0%, transparent 70%)",
         }}
       />
-      {/* glow top center */}
+      {/* siluet yellow kanan bawah */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full z-0 pointer-events-none"
         style={{
-          background:
-            "radial-gradient(ellipse 60% 40% at 50% 0%, #ffffff08, transparent)",
+          background: "radial-gradient(circle, #eab30815 0%, transparent 70%)",
         }}
       />
-      {/* fade bottom */}
+      {/* siluet yellow tengah subtle */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] z-0 pointer-events-none"
         style={{
-          background:
-            "linear-gradient(to bottom, transparent 60%, #080808 100%)",
+          background: "radial-gradient(ellipse, #eab30808 0%, transparent 70%)",
         }}
       />
       <div className="relative z-10">{children}</div>

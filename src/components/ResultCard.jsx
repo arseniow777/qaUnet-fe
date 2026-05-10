@@ -33,91 +33,80 @@ export default function ResultSection({ results, elapsed }) {
   };
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-semibold text-center text-white">
-        Hasil Segmentasi
-      </h2>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* kiri: image slider + navigator */}
-        <Card className="bg-white/5 border-white/10 p-4 space-y-4">
-          {/* model navigator */}
-          <div className="flex items-center justify-between">
-            <Button
-              size="sm"
-              variant="ghost"
-              className="text-white/50 hover:text-white"
-              onClick={() => setActiveIdx((i) => Math.max(i - 1, 0))}
-              disabled={activeIdx === 0}
-            >
-              ‹
-            </Button>
-            <span className="text-sm font-medium text-white">
-              {MODEL_LABELS[activeKey]}
-            </span>
-            <Button
-              size="sm"
-              variant="ghost"
-              className="text-white/50 hover:text-white"
-              onClick={() =>
-                setActiveIdx((i) => Math.min(i + 1, modelKeys.length - 1))
-              }
-              disabled={activeIdx === modelKeys.length - 1}
-            >
-              ›
-            </Button>
-          </div>
-
-          <ImageSlider
-            mask={activeResult.mask}
-            overlay={activeResult.overlay}
-          />
-
-          <p className="text-xs text-white/30 text-center">
-            Geser untuk bandingkan Mask ↔ Overlay
-          </p>
-
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* kiri: slider + navigator */}
+      <Card className="bg-white border-neutral-200 p-4 space-y-4 shadow-sm">
+        <div className="flex items-center justify-between">
           <Button
             size="sm"
-            variant="outline"
-            className="w-full border-white/20 text-white hover:bg-white/10 text-xs"
-            onClick={handleDownload}
+            variant="ghost"
+            className="text-neutral-400 hover:text-neutral-900"
+            onClick={() => setActiveIdx((i) => Math.max(i - 1, 0))}
+            disabled={activeIdx === 0}
           >
-            ↓ Download Overlay
+            ‹
           </Button>
-        </Card>
-
-        {/* kanan: metrics */}
-        <div className="space-y-3">
-          <MetricCard
-            metrics={activeResult.metrics}
-            isBest={activeKey === bestModel}
-            elapsed={elapsed[activeKey]}
-          />
-
-          {/* semua model summary */}
-          {modelKeys.length > 1 && (
-            <Card className="bg-white/5 border-white/10 p-4 space-y-2">
-              <p className="text-xs text-white/40 uppercase tracking-wider">
-                Semua Model
-              </p>
-              {modelKeys.map((k) => (
-                <button
-                  key={k}
-                  onClick={() => setActiveIdx(modelKeys.indexOf(k))}
-                  className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${
-                    k === activeKey
-                      ? "bg-blue-500/20 border border-blue-500/30 text-white"
-                      : "bg-white/5 border border-white/10 text-white/50 hover:text-white"
-                  }`}
-                >
-                  <span>{MODEL_LABELS[k]}</span>
-                  <span>{results[k].metrics.flood_percentage}%</span>
-                </button>
-              ))}
-            </Card>
-          )}
+          <span className="text-sm font-semibold text-neutral-900">
+            {MODEL_LABELS[activeKey]}
+          </span>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="text-neutral-400 hover:text-neutral-900"
+            onClick={() =>
+              setActiveIdx((i) => Math.min(i + 1, modelKeys.length - 1))
+            }
+            disabled={activeIdx === modelKeys.length - 1}
+          >
+            ›
+          </Button>
         </div>
+
+        <ImageSlider mask={activeResult.mask} overlay={activeResult.overlay} />
+
+        <p className="text-xs text-neutral-400 text-center">
+          Geser untuk bandingkan Mask ↔ Overlay
+        </p>
+
+        <Button
+          size="sm"
+          variant="outline"
+          className="w-full border-neutral-200 text-neutral-700 hover:bg-neutral-50 text-xs"
+          onClick={handleDownload}
+        >
+          ↓ Download Overlay
+        </Button>
+      </Card>
+
+      {/* kanan: metrics */}
+      <div className="space-y-3">
+        <MetricCard
+          metrics={activeResult.metrics}
+          isBest={activeKey === bestModel}
+          elapsed={elapsed[activeKey]}
+        />
+
+        {modelKeys.length > 1 && (
+          <Card className="bg-white border-neutral-200 p-4 space-y-2 shadow-sm">
+            <p className="text-xs text-neutral-400 uppercase tracking-wider">
+              Semua Model
+            </p>
+            {modelKeys.map((k) => (
+              <button
+                key={k}
+                onClick={() => setActiveIdx(modelKeys.indexOf(k))}
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all ${
+                  k === activeKey
+                    ? "bg-yellow-50 border border-yellow-300 text-neutral-900 font-medium"
+                    : "bg-neutral-50 border border-neutral-200 text-neutral-500 hover:text-neutral-900"
+                }`}
+              >
+                <span>{MODEL_LABELS[k]}</span>
+                <span>{results[k].metrics.flood_percentage}%</span>
+              </button>
+            ))}
+          </Card>
+        )}
       </div>
     </div>
   );

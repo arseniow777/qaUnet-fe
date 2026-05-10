@@ -6,7 +6,7 @@ export default function UploadZone({ onFile }) {
   };
 
   return (
-    <div className="w-full border border-dashed border-white/20 bg-white/5 rounded-xl">
+    <div className="w-full border-2 border-dashed border-neutral-200 rounded-xl overflow-hidden">
       <FileUpload onChange={handleChange} />
     </div>
   );

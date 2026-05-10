@@ -30,8 +30,9 @@ export default function ImageSlider({ mask, overlay }) {
       {/* kanan: overlay merah */}
       <img
         src={`data:image/png;base64,${overlay}`}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
         alt="overlay"
+        draggable="false"
       />
       {/* kiri: mask biru-putih */}
       <div
@@ -40,8 +41,9 @@ export default function ImageSlider({ mask, overlay }) {
       >
         <img
           src={`data:image/png;base64,${mask}`}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
           alt="mask"
+          draggable="false"
         />
       </div>
       {/* divider */}
